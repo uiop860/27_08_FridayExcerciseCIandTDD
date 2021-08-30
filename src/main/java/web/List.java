@@ -7,13 +7,17 @@ package web;
 
 import entities.Account;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.AccountMapper;
+import model.DBConnector;
 
 /**
  *
@@ -32,8 +36,10 @@ public class List extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         AccountMapper accountMapper = new AccountMapper();
         ArrayList<Account> accounts = new ArrayList();
+        
         accounts = accountMapper.getAllAccountsFromDB();
         
         request.setAttribute("accounts", accounts);

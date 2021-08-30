@@ -17,19 +17,26 @@ import java.util.ArrayList;
  */
 public class AccountMapper {
     
+    private Connection con;
+
+    public AccountMapper() {
+        try {
+            this.con = DBConnector.connection();
+        } catch (ClassNotFoundException | SQLException ex) {
+            this.con = null;
+        }
+    }
+    
+    public AccountMapper(Connection con)  {
+        this.con = con;
+    }
+    
     public ArrayList<Account> getAllAccountsFromDB(){
         
         ArrayList<Account> accounts = new ArrayList<>();
         
         try{
-            Connection con = DBConnector.connection();
-            String sql = "SELECT `usertable`.`id`,\n"
-                       + "    `usertable`.`fname`,\n"
-                       + "    `usertable`.`lname`,\n"
-                       + "    `usertable`.`pw`,\n"
-                       + "    `usertable`.`phone`,\n"
-                       + "    `usertable`.`address`\n"
-                       + "FROM `startcode`.`usertable`;";
+            String sql = "SELECT * FROM usertable";
             
             ResultSet rs = con.prepareStatement(sql).executeQuery();
             
@@ -42,7 +49,8 @@ public class AccountMapper {
                 String address = rs.getString("address");
                 accounts.add(new Account(id,fName,lName,phone,address,password));
             }
-        } catch(SQLException | ClassNotFoundException e){
+            con.close();
+        } catch(SQLException e){
         }
         return accounts;
     }
