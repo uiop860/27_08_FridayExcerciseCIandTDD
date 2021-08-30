@@ -19,7 +19,7 @@ jobs:
           host port: 3306
           container port: 3306
           mysql version: "latest"
-          mysql database: "startcode"
+          mysql database: "startcode_test"
           mysql user: "dev"
           mysql password: "ax2"
 

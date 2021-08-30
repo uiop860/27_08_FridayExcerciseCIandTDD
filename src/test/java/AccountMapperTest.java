@@ -34,7 +34,8 @@ public class AccountMapperTest {
     public static void setUpClass() {
         try{
             con = DBConnector.connection();
-            String sql = "drop table if exists usertable ;\n"
+            String sql = "use startcode_test;\n"
+                       + "drop table if exists usertable ;\n"
                        + "create table usertable(\n"
                        + "id int primary key auto_increment,\n"
                        + "fname varchar(30),\n"
