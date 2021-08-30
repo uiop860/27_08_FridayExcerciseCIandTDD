@@ -13,7 +13,7 @@
         <title>Home page</title>
     </head>
     <body>
-        <h1>Hello there bro!</h1>
+        <h1>Hello there broski!</h1>
         <a href="${pageContext.request.contextPath}/list">Se alle navne</a>
     </body>
 </html>
